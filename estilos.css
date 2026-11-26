@@ -1,0 +1,512 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  background-color: #0d1f12;
+  color: #ffffff;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+a,
+a:hover,
+a:active,
+a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* --- SECCIÓN DE PRESENTACIÓN --- */
+.hero-section {
+  min-height: 60vh;
+  background-color: #0a170d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+  border-bottom: 4px solid #facc15;
+}
+
+.hero-content {
+  max-width: 900px;
+  text-align: center;
+}
+
+/* Estilos para alinear el logo y el título principal */
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.title-logo {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+}
+
+.hero-content .title-container h1 {
+  font-size: 34px;
+  font-weight: bold;
+  margin-bottom: 0;
+  color: #facc15;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.hero-content .subtitle {
+  font-size: 18px;
+  color: #e2e8f0;
+  margin-bottom: 25px;
+}
+
+/* Cuadro de Información e Instrucciones */
+.info-box {
+  background-color: #142e1b;
+  padding: 25px 30px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  text-align: left;
+  border: 1px solid #1e4629;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.welcome-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #f1f5f9;
+  margin-bottom: 20px;
+}
+
+.info-box h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #facc15;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #275934;
+  padding-bottom: 8px;
+}
+
+/* Rejilla para PC / Móvil */
+.guide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .guide-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.guide-card {
+  background-color: #0a170d;
+  padding: 18px 20px;
+  border-radius: 8px;
+  border: 1px solid #facc15;
+}
+
+.guide-card h3 {
+  font-size: 16px;
+  font-weight: bold;
+  color: #facc15;
+  margin-bottom: 12px;
+}
+
+.guide-card ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.guide-card li {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
+
+.guide-card li strong {
+  color: #ffffff;
+}
+
+.guide-card code {
+  background-color: #1e4629;
+  color: #facc15;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* Botón flotante hacia abajo */
+.btn-scroll {
+  display: inline-block;
+  background-color: #facc15;
+  color: #0a170d;
+  font-weight: bold;
+  padding: 14px 32px;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 4px 10px rgba(250, 204, 21, 0.2);
+}
+
+.btn-scroll:hover {
+  background-color: #eab308;
+  transform: translateY(-2px);
+}
+
+/* --- SECCIÓN DEL MAPA (VISOR 360°) --- */
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #000;
+}
+
+#pano {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#titleBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 40px;
+  height: 40px;
+  text-align: center;
+}
+
+.mobile #titleBar {
+  height: 50px;
+  right: 50px;
+}
+
+body.fullscreen-enabled #titleBar {
+  right: 80px;
+}
+
+body.fullscreen-enabled.mobile #titleBar {
+  right: 100px;
+}
+
+body.multiple-scenes #titleBar {
+  left: 40px;
+}
+
+body.multiple-scenes.mobile #titleBar {
+  left: 50px;
+}
+
+#titleBar .sceneName {
+  width: 100%;
+  height: 100%;
+  line-height: 30px;
+  padding: 5px;
+  background-color: rgba(10, 23, 13, 0.9);
+  color: #facc15;
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mobile #titleBar .sceneName {
+  line-height: 40px;
+}
+
+#fullscreenToggle,
+#autorotateToggle,
+#sceneListToggle {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  background-color: rgba(20, 46, 27, 0.9);
+}
+
+#sceneListToggle {
+  left: 0;
+}
+
+#autorotateToggle {
+  right: 0;
+}
+
+#fullscreenToggle {
+  display: none;
+  right: 0;
+}
+
+.mobile #fullscreenToggle,
+.mobile #autorotateToggle,
+.mobile #sceneListToggle {
+  width: 50px;
+  height: 50px;
+}
+
+body.fullscreen-enabled #fullscreenToggle {
+  display: block;
+}
+
+body.fullscreen-enabled #autorotateToggle {
+  right: 40px;
+}
+
+body.fullscreen-enabled.mobile #autorotateToggle {
+  right: 50px;
+}
+
+.icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.mobile .icon {
+  top: 10px;
+  right: 10px;
+}
+
+#fullscreenToggle .icon.on,
+#autorotateToggle .icon.on,
+#sceneListToggle .icon.on {
+  display: none;
+}
+
+#fullscreenToggle .icon.off,
+#autorotateToggle .icon.off,
+#sceneListToggle .icon.off {
+  display: block;
+}
+
+#fullscreenToggle.enabled .icon.on,
+#autorotateToggle.enabled .icon.on,
+#sceneListToggle.enabled .icon.on {
+  display: block;
+}
+
+#fullscreenToggle.enabled .icon.off,
+#autorotateToggle.enabled .icon.off,
+#sceneListToggle.enabled .icon.off {
+  display: none;
+}
+
+#sceneList {
+  position: absolute;
+  top: 0;
+  left: -220px;
+  padding-top: 40px;
+  width: 220px;
+  max-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-left: 0;
+  transition: margin-left 0.5s ease-in-out;
+}
+
+.mobile #sceneList {
+  padding-top: 50px;
+  width: 100%;
+  height: 100%;
+  left: -100%;
+}
+
+#sceneList .scenes {
+  width: 100%;
+  background-color: rgba(10, 23, 13, 0.95);
+}
+
+.mobile #sceneList.enabled {
+  margin-left: 100%;
+}
+
+#sceneList.enabled {
+  margin-left: 220px;
+}
+
+#sceneList .scene {
+  display: block;
+  width: 100%;
+  height: 30px;
+}
+
+.mobile #sceneList .scene {
+  height: 40px;
+}
+
+#sceneList .scene .text {
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+  line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #ffffff;
+}
+
+.mobile #sceneList .scene .text {
+  line-height: 40px;
+}
+
+#sceneList .scene:hover,
+#sceneList .scene.current {
+  background-color: #facc15;
+}
+
+#sceneList .scene:hover .text,
+#sceneList .scene.current .text {
+  color: #0a170d;
+  font-weight: bold;
+}
+
+body.single-scene #sceneList,
+body.single-scene #sceneListToggle {
+  display: none;
+}
+
+.link-hotspot {
+  width: 60px;
+  height: 60px;
+  margin-left: -30px;
+  margin-top: -30px;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+
+.link-hotspot-icon {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.link-hotspot-tooltip {
+  position: absolute;
+  left: 100%;
+  top: 14px;
+  margin-left: 3px;
+  font-size: 16px;
+  max-width: 300px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  background-color: rgba(10, 23, 13, 0.9);
+  color: #facc15;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-8px);
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.link-hotspot:hover .link-hotspot-tooltip {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(0);
+}
+
+.info-hotspot {
+  line-height: 1.2em;
+  opacity: 0.9;
+}
+
+.info-hotspot .info-hotspot-header {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #facc15;
+  cursor: pointer;
+}
+
+.info-hotspot-icon-wrapper {
+  width: 40px;
+  height: 40px;
+}
+
+.info-hotspot-icon {
+  width: 90%;
+  height: 90%;
+  margin: 5%;
+}
+
+.viewControlButton {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  background-color: rgba(20, 46, 27, 0.9);
+}
+
+body.view-control-buttons .viewControlButton {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  body.view-control-buttons .viewControlButton {
+    display: none;
+  }
+}
+
+.viewControlButton .icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.viewControlButton-1 {
+  margin-left: -145px;
+}
+
+.viewControlButton-2 {
+  margin-left: -95px;
+}
+
+.viewControlButton-3 {
+  margin-left: -45px;
+}
+
+.viewControlButton-4 {
+  margin-left: 5px;
+}
+
+.viewControlButton-5 {
+  margin-left: 55px;
+}
+
+.viewControlButton-6 {
+  margin-left: 105px;
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Mapa Interactivo EICO</title>
+  <link rel="icon" type="image/png" href="img/logo-eico.png">
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Un mapa del EICO para que puedan conocer y orientarse fácilmente por la institución." />
+  <meta name="viewport"
+    content="target-densitydpi=device-dpi, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+  <style>
+    @-ms-viewport {
+      width: device-width;
+    }
+  </style>
+  <link rel="stylesheet" href="vendor/reset.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body class="multiple-scenes view-control-buttons">
+
+  <!-- SECCIÓN DE PRESENTACIÓN E INSTRUCCIONES -->
+  <header class="hero-section">
+    <div class="hero-content">
+
+      <div class="title-container">
+        <img src="img/logo-eico.png" alt="Logo EICO" class="title-logo">
+        <h1>Mapa Interactivo EICO</h1>
+      </div>
+
+      <p class="subtitle">Explora y oriéntate fácilmente por las instalaciones de nuestra institución.</p>
+
+      <div class="info-box">
+        <p class="welcome-text">
+          Bienvenido al mapa virtual de la escuela. Esta herramienta te permitirá recorrer distintas
+          áreas e instalaciones en 360° utilizando tecnología panorámica.
+        </p>
+
+        <h2>¿Cómo explorar el mapa?</h2>
+
+        <div class="guide-grid">
+          <div class="guide-card">
+            <h3>💻 En Computadora (PC/Laptop)</h3>
+            <ul>
+              <li><strong>Mirar a tu alrededor:</strong> Mantén presionado el clic izquierdo sobre el mapa y arrastra el
+                ratón en la dirección que quieras ver.</li>
+              <li><strong>Acercar / Alejar:</strong> Usa la rueda del ratón (scroll) o las teclas <code>+</code> /
+                <code>-</code> de tu teclado. También puedes usar los botones flotantes de zoom en pantalla.
+              </li>
+              <li><strong>Moverse de escenario:</strong> Haz clic sobre los iconos o flechas flotantes dentro de la
+                imagen, o selecciona un espacio del menú desplegable lateral.</li>
+            </ul>
+          </div>
+
+          <div class="guide-card">
+            <h3>📱 En Celular o Tablet</h3>
+            <ul>
+              <li><strong>Mirar a tu alrededor:</strong> Desliza tu dedo por la pantalla hacia la dirección a la que
+                deseas girar la vista.</li>
+              <li><strong>Acercar / Alejar:</strong> Haz el gesto de pinza con dos dedos (junta o separa tus dedos sobre
+                la pantalla).</li>
+              <li><strong>Moverse de escenario:</strong> Toca directamente los iconos o marcadores flotantes en la
+                imagen, o despliega el menú superior izquierdo para cambiar de zona.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <a href="#mapSection" class="btn-scroll">Ver Mapa 360° ↓</a>
+    </div>
+  </header>
+
+  <!-- SECCIÓN DEL MAPA (VISOR 360°) -->
+  <main id="mapSection" class="map-container">
+
+    <div id="pano"></div>
+
+    <div id="sceneList">
+      <ul class="scenes">
+
+        <a href="javascript:void(0)" class="scene" data-id="0-sector-n1">
+          <li class="text">Sector N°1</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="1-sector-n2">
+          <li class="text">Sector N°2</li>
+        </a>
+
+        <a href="javascript:void(0)" class="scene" data-id="2-sector-n3">
+          <li class="text">Sector N°3</li>
+        </a>
+
+      </ul>
+    </div>
+
+    <div id="titleBar">
+      <h1 class="sceneName"></h1>
+    </div>
+
+    <a href="javascript:void(0)" id="autorotateToggle">
+      <img class="icon off" src="img/play.png">
+      <img class="icon on" src="img/pause.png">
+    </a>
+
+    <a href="javascript:void(0)" id="fullscreenToggle">
+      <img class="icon off" src="img/fullscreen.png">
+      <img class="icon on" src="img/windowed.png">
+    </a>
+
+    <a href="javascript:void(0)" id="sceneListToggle">
+      <img class="icon off" src="img/expand.png">
+      <img class="icon on" src="img/collapse.png">
+    </a>
+
+    <a href="javascript:void(0)" id="viewUp" class="viewControlButton viewControlButton-1">
+      <img class="icon" src="img/up.png">
+    </a>
+    <a href="javascript:void(0)" id="viewDown" class="viewControlButton viewControlButton-2">
+      <img class="icon" src="img/down.png">
+    </a>
+    <a href="javascript:void(0)" id="viewLeft" class="viewControlButton viewControlButton-3">
+      <img class="icon" src="img/left.png">
+    </a>
+    <a href="javascript:void(0)" id="viewRight" class="viewControlButton viewControlButton-4">
+      <img class="icon" src="img/right.png">
+    </a>
+    <a href="javascript:void(0)" id="viewIn" class="viewControlButton viewControlButton-5">
+      <img class="icon" src="img/plus.png">
+    </a>
+    <a href="javascript:void(0)" id="viewOut" class="viewControlButton viewControlButton-6">
+      <img class="icon" src="img/minus.png">
+    </a>
+
+    <script src="vendor/screenfull.min.js"></script>
+    <script src="vendor/bowser.min.js"></script>
+    <script src="vendor/marzipano.js"></script>
+
+    <script src="data.js"></script>
+    <script src="index.js"></script>
+
+</body>
+
+</html>
